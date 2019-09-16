@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+</head>
+<body>
+<div style="width:100%;text-align:center">
+    <nav>
+        <a href="/index/">Recent Draw</a> |
+        <a href="/draws/">Draw History</a> |
+        <a href="/pool/">Candidate Pool</a> |
+        <a href="/table/">Tabulated History</a>
+    </nav>
+</div>
+<br>
+<br>
+<div style="width:100%;text-align:center">
+    <span style="color:red;font-size:35pt"><b>Canada </b></span>
+    <span style="font-size:35pt"><b>Express Entry Information</b></span>
+    <br>
+    <br>
+    <br>
+    <span style="font-size:30pt"><b>Most Recent Draw</b></span>
+</div>
+<br>
+<style>
+    table tr td {
+        font-size: 24px;
+    }
+</style>
+<div style="width:100%;text-align:center">
+    <table border="1" align="center">
+        <thread>
+            <tr>
+                <td>Draw ID</td>
+                <td>Date</td>
+                <td>Score</td>
+                <td>No. of Invitations</td>
+            </tr>
+        </thread>
+        <tr>
+            <td>{{ info.drawid }}</td>
+            <td>{{ info.date }}</td>
+            <td>{{ info.score }}</td>
+            <td>{{ info.population }}</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

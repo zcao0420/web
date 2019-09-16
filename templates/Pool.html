@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pool</title>
+</head>
+<body>
+<div style="width:100%;text-align:center">
+    <nav>
+        <a href="/index/">Recent Draw</a> |
+        <a href="/draws/">Draw History</a> |
+        <a href="/pool/">Candidate Pool</a> |
+        <a href="/table/">Tabulated History</a>
+    </nav>
+</div>
+<br>
+<br>
+<div style="width:100%;text-align:center">
+    <span style="font-size:20pt"><b>Candidate Pool before most recent draw</b></span>
+</div>
+<br>
+<br>
+{#Get the chart.js online version#}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<div style="width:500px;height:400px;margin:0px auto">
+    <canvas id="poolChart" width="500" height="400"></canvas>
+</div>
+<script>
+    var ctx = document.getElementById('poolChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'horizontalBar',
+        data: {
+            labels: ['601 - 1200', '451 - 600', '441 - 450', '431 - 440', '421 - 430',
+                    '411 - 420', '401 - 410', '391 - 400', '381 - 390', '371 - 380',
+                    '361 - 370', '351 - 360', '301 - 350', '0 - 300'],
+            datasets: [{
+                data: {{ pool_data }},
+                borderColor:'blue',
+                hoverBorderColor: 'red',
+                hoverBorderWidth: 2,
+                borderWidth: 1,
+                fill: false,
+            }]
+        },
+        options: {
+            {#Not showing the table label#}
+            legend: {
+                display: false
+            },
+            scales: {
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        fontSize: 20,
+                        fontStyle: 'bold',
+                        labelString: 'CRS score',
+                    },
+                    ticks: {
+                        fontSize: 15
+                    }
+                }],
+                xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        fontSize: 20,
+                        fontStyle: 'bold',
+                        labelString: 'Number of Candidates',
+                    },
+                    ticks: {
+                        fontSize: 15
+                    }
+                }],
+            },
+            tooltips: {
+                intersect: true,
+                mode: 'index'
+            }
+        }
+    });
+</script>
+<br>
+
+<div style="width:100%;text-align:center">
+    <form action="/pool/" method="post">
+        {% csrf_token %}
+        <div style="width:100%;text-align:center">
+            <P>
+                <label>Your Score:</label>
+                <input type="text" name="score"/>
+                <input type="submit" value="Evaluate">
+            </P>
+            <P>
+                <span style="font-size:16pt">
+                    <output>{{ before }} </output>
+                    <span style="font-size:20pt;color:green">
+                        <output><b>{{ r_low }}</b></output>
+                    </span>
+                    <output>{{ connect }} </output>
+                    <span style="font-size:20pt;color:red">
+                        <output><b>{{ r_high }}</b></output>
+                    </span>
+                    <output>{{ after }}</output>
+                </span>
+            </P>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

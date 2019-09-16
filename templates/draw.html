@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Draw History</title>
+</head>
+<body>
+<div style="width:100%;text-align:center">
+    <nav>
+        <a href="/index/">Recent Draw</a> |
+        <a href="/draws/">Draw History</a> |
+        <a href="/pool/">Candidate Pool</a> |
+        <a href="/table/">Tabulated History</a>
+    </nav>
+</div>
+<br>
+<br>
+<div style="width:100%;text-align:center">
+    <form action="/draws/" method="POST">
+        {% csrf_token %}
+        <select name="draw_range">
+            <option selected="selected" value="0">Choose number of draws...</option>
+            <option value="4">Past 4 draws</option>
+            <option value="8">Past 8 draws</option>
+            <option value="16">Past 16 draws</option>
+            <option value="32">Past 32 draws</option>
+            <option value="-1">All times</option>
+        </select>
+        <input type="submit" value="View">
+    </form>
+</div>
+<br>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<div style="width:800px;height:480px;margin:0px auto">
+    <canvas id="myChart" width={{wid}} height={{hei}}></canvas>
+</div>
+<script>
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        {#You have to specify that the variable is safe to render, otherwise no chart is plotted#}
+        labels: {{ id|safe}},
+        datasets: [{
+                label: 'Score',
+                data: {{ score }},
+                yAxisID: 'A',
+                borderColor:'blue',
+                borderWidth: 2,
+                pointBackgroundColor: 'blue',
+                pointRadius: 3,
+                pointHoverBackgroundColor: 'red',
+                pointHoverBorderColor: 'red',
+                pointHoverBorderWidth: 2,
+                pointHoverRadius: 5,
+                fill: false,
+            },
+            {
+                label:'No. of Invitation',
+                data: {{ pop }},
+                yAxisID: 'B',
+                borderColor:'white',
+                borderWidth: 0,
+                pointRadius: 0,
+                pointHoverBackgroundColor: 'green',
+                pointHoverBorderColor: 'green',
+                pointHoverBorderWidth: 0,
+                pointHoverRadius: 0,
+                fill: false,
+            }
+        ]
+    },
+    options: {
+        title: {
+            display: true,
+            text: {{ chartTitle|safe }},
+            boxWidth: 0,
+            fontSize: 30,
+            fontColor: 'black',
+        },
+        legend: {
+            display: false,
+        },
+        scales: {
+            yAxes: [
+                {
+                    id: 'A',
+                    type: 'linear',
+                    position: 'left',
+                    scaleLabel: {
+                        display: true,
+                        fontSize: 20,
+                        fontStyle: 'bold',
+                        labelString: 'Draw score',
+                    },
+                    ticks: {
+                        fontSize: 15,
+                        suggestedMin: 440,
+                    }
+                },
+                {
+                    id: 'B',
+                    type: 'linear',
+                    position: 'right',
+                    scaleLabel: {
+                        display: true,
+                        fontSize: 20,
+                        fontStyle: 'bold',
+                        labelString: 'No. of Invitation',
+                    },
+                    ticks: {
+                        fontSize: 15,
+                        suggestedMin: 3000,
+                    }
+                }
+            ],
+            xAxes: [{
+                scaleLabel: {
+                    display: true,
+                    fontSize: 20,
+                    fontStyle: 'bold',
+                    labelString: 'Draw ID',
+                },
+                ticks: {
+                    fontSize: 15
+                }
+            }],
+        },
+        tooltips: {
+            intersect: 'point',
+            mode: 'index'
+        }
+    }
+});
+</script>
+
+</body>
+</html>
