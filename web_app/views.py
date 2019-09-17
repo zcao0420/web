@@ -71,9 +71,7 @@ def draw(request):
 
 def pool(request):
     info = list(models.Pool.objects.values())
-    print(list(info[0].values()))
     pool_data = list(info[0].values())[1:]
-    print(pool_data[::-1])
     user_score = request.POST.get('score', None)
     rank_bot, rank_top = getRank(user_score, pool_data)
     if rank_top == "  ":
@@ -90,7 +88,6 @@ def pool(request):
         before = "You rank between"
         connect = "and"
         after = "in the Candidate Pool"
-    # print(pool_data[::-1])
     return render(request, 'Pool.html', {'before': before, 'connect': connect,
                                          'after': after, 'r_low': rank_bot,
                                          'r_high': rank_top, 'pool_data': pool_data[::-1]})
