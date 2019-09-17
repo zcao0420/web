@@ -61,19 +61,13 @@ def draw(request):
                 title = ["All draws"]
             else:
                 title = ["Past "+str(draw_range)+" draws"]
-            print(title)
             return render(request, 'draw.html', {'score': score, 'id': ID, 'dates': dates,
                                                  'pop': pop, 'wid': "800",
                                                  'hei': "480", 'chartTitle': title})
     score, ID, dates, pop = dissemble(draw_list, 0)
-    print(score)
-    print(ID)
     return render(request, 'draw.html', {'score': score, 'id': ID, 'dates': dates,
                                          'pop': pop, 'wid': "0",
                                          'hei': '0', 'label': str(draw_range)})
-
-    # print(draw_range, type(draw_range))
-    # return render(request, 'draw.html', {'info': draw_list[::-1]})
 
 def pool(request):
     info = list(models.Pool.objects.values())
