@@ -25,7 +25,7 @@ SECRET_KEY = 'imsq+@ok-u)=^_x78j#ch9mfp)8(^e5q^zgw)d1-l%1j1@pt99'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['3.15.55.80', 'www.canadaeeinfo.com']
+ALLOWED_HOSTS = ['3.15.55.80', 'www.canadaeeinfo.com','*']
 
 
 # Application definition
