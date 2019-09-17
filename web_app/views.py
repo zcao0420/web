@@ -88,6 +88,7 @@ def pool(request):
         before = "You rank between"
         connect = "and"
         after = "in the Candidate Pool"
+    print(pool_data[::-1])
     return render(request, 'Pool.html', {'before': before, 'connect': connect,
                                          'after': after, 'r_low': rank_bot,
                                          'r_high': rank_top, 'pool_data': pool_data[::-1]})
