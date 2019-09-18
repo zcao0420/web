@@ -19,6 +19,7 @@ from web_app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.index),
     path('index/', views.index),
     path('draws/', views.draw),
     path('pool/', views.pool),
