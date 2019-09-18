@@ -6,7 +6,10 @@ from django.forms.models import model_to_dict
 # Create your views here.
 def getRank(score, pool):
     if score != None:
-        score = int(score)
+        try:
+            score = int(score)
+        except ValueError:
+            return "invalid", "invalid"
     else:
         return "  ", "  "
     intervals = [0, 301, 351, 361, 371, 381, 391, 401, 411, 421, 431, 441, 451, 601, 1201]
