@@ -13,10 +13,10 @@ import sys
 from django.core.wsgi import get_wsgi_application
 from os.path import dirname,abspath
 
-# os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'web.settings')
-# os.environ.setdefault("PYTHON_EGG_CACHE", "/tmp/.python-eggs")
-# PROJECT_DIR = dirname(dirname(abspath(__file__)))
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'web.settings')
+os.environ.setdefault("PYTHON_EGG_CACHE", "/tmp/.python-eggs")
+PROJECT_DIR = dirname(dirname(abspath(__file__)))
 
-# sys.path.insert(0,PROJECT_DIR)
+sys.path.insert(0,PROJECT_DIR)
 
 application = get_wsgi_application()
