@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from web_app import views
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,3 +26,5 @@ urlpatterns = [
     path('pool/', views.pool),
     path('table/', views.table),
 ]
+
+urlpatterns += staticfiles_urlpatterns()
