@@ -1,19 +1,22 @@
 <!DOCTYPE html>
+<script src="http://how2j.cn/study/js/jquery/2.0.0/jquery.min.js"></script>
+<link href="http://how2j.cn/study/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
+<script src="http://how2j.cn/study/js/bootstrap/3.3.6/bootstrap.min.js"></script>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Pool</title>
 </head>
 <body>
-<div style="width:100%;text-align:center">
-    <nav>
-        <a href="/index/">Recent Draw</a> |
-        <a href="/draws/">Draw History</a> |
-        <a href="/pool/">Candidate Pool</a> |
-        <a href="/table/">Tabulated History</a>
-    </nav>
+<div>
+    <img src="/static/ee.jpg" class="img-thumbnail">
 </div>
-<br>
+<div class="breadcrumb">
+    <li><a href="/index/">Most Recent Draw</a></li>
+    <li><a href="/draws/">Score Trend</a></li>
+    <li><a href="/pool/">Candidate Pool </a></li>
+    <li><a href="/table/">Tabulated History</a></li>
+</div>
 <br>
 <div style="width:100%;text-align:center">
     <span style="font-size:20pt"><b>Candidate Pool before most recent draw</b></span>
@@ -87,17 +90,17 @@
             <P>
                 <label>Your Score:</label>
                 <input type="text" name="score"/>
-                <input type="submit" value="Evaluate">
+                <button type="submit" class="btn btn-success">View</button>
             </P>
-            <P>
+            <P class="col-xs-12">
                 <span style="font-size:16pt">
                     <output>{{ before }} </output>
                     <span style="font-size:20pt;color:green">
-                        <output><b>{{ r_low }}</b></output>
+                        <output class="text-success"><b>{{ r_low }}</b></output>
                     </span>
                     <output>{{ connect }} </output>
                     <span style="font-size:20pt;color:red">
-                        <output><b>{{ r_high }}</b></output>
+                        <output class="text-danger"><b>{{ r_high }}</b></output>
                     </span>
                     <output>{{ after }}</output>
                 </span>
