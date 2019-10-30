@@ -10,14 +10,14 @@
 </head>
 <body>
 <div>
-    <img src="{% static "ee.jpg" %}" class="img-thumbnail">
+    <img src="{% static "ee.jpg" %}">
 </div>
-<div class="breadcrumb">
-    <li><a href="/index/">Most Recent Draw</a></li>
-    <li><a href="/draws/">Score Trend</a></li>
-    <li><a href="/pool/">Candidate Pool </a></li>
-    <li><a href="/table/">Tabulated History</a></li>
-</div>
+<ul class="nav nav-tabs">
+    <li role="presentation"><a href="/index/"><b>Most Recent Draw</b></a></li>
+    <li role="presentation"><a href="/draws/"><b>Score Trend</b></a></li>
+    <li role="presentation"><a href="/pool/"><b>Candidate Pool</b></a></li>
+    <li role="presentation" class="active"><a href="/table/"><b>Tabulated History</b></a></li>
+</ul>
 <br>
 <div style="width:100%;text-align:center">
     <span style="font-size:28pt"><b>Detailed Draw History Information </b></span>
